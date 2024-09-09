@@ -26,7 +26,7 @@ var player_direction = 1
 
 #JumpBuffer Timer
 @export var canJumpBuffer = false
-@export var jumpBufferTime = .1
+@export var jumpBufferTime = .05
 @onready var jump_buffer_timer = $JumpBufferTimer
 
 #CoyoteTimer
@@ -35,8 +35,10 @@ var player_direction = 1
 @onready var coyote_timer = $CoyoteTimer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var on_conveyor = false
 var conveyor_velocity = 0
+@onready var conveyor_check: RayCast2D = $ConveyorCheck
 
 
 func _ready() -> void:
@@ -44,7 +46,14 @@ func _ready() -> void:
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if conveyor_check.is_colliding():
+		var collider = conveyor_check.get_collider()
+		if collider.is_in_group("conveyor"):
+			on_conveyor = true
+			conveyor_velocity = Globals.conveyor_speed
+	else:
+		on_conveyor = false
+		conveyor_velocity = 0
 
 func get_input_direction() -> float:
 	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -113,7 +122,3 @@ func check_upgrade():
 	if build_step == 2 && Globals.gear_count >= Globals.gear_count_for_arms:
 		build_step += 1
 		build_robot(build_step)
-
-func on_conveyor_entered(con_vel: int):
-	conveyor_velocity = con_vel
-	on_conveyor = true

@@ -13,7 +13,11 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("convey"):
-		if body.is_on_floor():
-			body.on_conveyor_entered(conveyor_speed)
+#func _on_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("convey"):
+		#body.on_conveyor_entered(conveyor_speed)
+#
+#
+#func _on_body_exited(body: Node2D) -> void:
+	#if body.is_in_group("convey"):
+		#body.on_conveyor_exited()

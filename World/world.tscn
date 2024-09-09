@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckfh3131asyqg"]
+[gd_scene load_steps=6 format=3 uid="uid://ckfh3131asyqg"]
 
 [ext_resource type="PackedScene" uid="uid://cecobdnqc5vdi" path="res://World/box.tscn" id="1_wu8ig"]
 [ext_resource type="PackedScene" uid="uid://cxqb66omy3qm3" path="res://Player/player.tscn" id="2_jvkxt"]
 [ext_resource type="PackedScene" uid="uid://bgjc5m3n5hob0" path="res://World/gear.tscn" id="3_70bwe"]
 [ext_resource type="PackedScene" uid="uid://dgq5kirpqc3g0" path="res://World/conveyor_area.tscn" id="4_2qinn"]
+[ext_resource type="PackedScene" uid="uid://dnejojvbb4jwy" path="res://World/box_2.tscn" id="5_dm53p"]
 
 [node name="World" type="Node"]
 
@@ -38,3 +39,7 @@ scale = Vector2(2, 2)
 [node name="ConveyorArea" parent="." instance=ExtResource("4_2qinn")]
 position = Vector2(551, 503)
 scale = Vector2(54.9736, -4.09994)
+
+[node name="Box2" parent="." instance=ExtResource("5_dm53p")]
+position = Vector2(82, 400)
+scale = Vector2(2, 2)

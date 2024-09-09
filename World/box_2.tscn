@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnejojvbb4jwy"]
+
+[ext_resource type="Script" path="res://World/box_2.gd" id="1_1e0lr"]
+[ext_resource type="Texture2D" uid="uid://cuscp5tf45tls" path="res://Art/Box2.png" id="1_mgkfp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdoj3"]
+size = Vector2(32, 32)
+
+[node name="Box2" type="CharacterBody2D" groups=["convey"]]
+script = ExtResource("1_1e0lr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_mgkfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mdoj3")
