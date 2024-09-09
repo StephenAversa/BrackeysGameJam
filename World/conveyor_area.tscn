@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgq5kirpqc3g0"]
+
+[ext_resource type="Script" path="res://World/conveyor_area.gd" id="1_qtiyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qom8k"]
+
+[node name="ConveyorArea" type="Area2D" groups=["conveyor"]]
+script = ExtResource("1_qtiyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qom8k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

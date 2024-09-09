@@ -19,7 +19,8 @@ func physics_update(delta: float) -> void:
 		player.canJumpBuffer = false
 		state_machine.transition_to("Air", {jump = true})
 	
-	player.velocity.x = lerp(player.velocity.x, float(0),player.friction * delta)
+	player.velocity.x = lerp(player.velocity.x, float(0) + player.conveyor_velocity,player.friction * delta)
+	player.move_and_slide()
 
 func enter(msg := {}) -> void:
 	player.canCoyote = true

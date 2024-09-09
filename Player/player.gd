@@ -35,10 +35,12 @@ var player_direction = 1
 @onready var coyote_timer = $CoyoteTimer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+var on_conveyor = false
+var conveyor_velocity = 0
 
 
 func _ready() -> void:
-	#build_robot(1)
+	velocity = Vector2.ZERO
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -111,3 +113,7 @@ func check_upgrade():
 	if build_step == 2 && Globals.gear_count >= Globals.gear_count_for_arms:
 		build_step += 1
 		build_robot(build_step)
+
+func on_conveyor_entered(con_vel: int):
+	conveyor_velocity = con_vel
+	on_conveyor = true

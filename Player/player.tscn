@@ -102,7 +102,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bq2wa"]
 size = Vector2(10, 10)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["convey"]]
 script = ExtResource("1_jabki")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
