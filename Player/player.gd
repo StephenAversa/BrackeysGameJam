@@ -39,6 +39,8 @@ var player_direction = 1
 var on_conveyor = false
 var conveyor_velocity = 0
 @onready var conveyor_check: RayCast2D = $ConveyorCheck
+@onready var move_right_check: RayCast2D = $MoveRightCheck
+var cant_move_right = false
 
 
 func _ready() -> void:
@@ -50,10 +52,17 @@ func _process(delta: float) -> void:
 		var collider = conveyor_check.get_collider()
 		if collider.is_in_group("conveyor"):
 			on_conveyor = true
-			conveyor_velocity = Globals.conveyor_speed
+			conveyor_velocity = Globals.conveyor_speed * delta
 	else:
 		on_conveyor = false
 		conveyor_velocity = 0
+	
+	if move_right_check.is_colliding():
+		var collider = move_right_check.get_collider()
+		if collider && collider.is_in_group("box"):
+			cant_move_right = true
+	else:
+		cant_move_right = false
 
 func get_input_direction() -> float:
 	var direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

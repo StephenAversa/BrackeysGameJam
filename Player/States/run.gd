@@ -16,7 +16,13 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Air", {coyote = true})
 
 	if (!is_zero_approx(player.get_input_direction())):
-		player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed + player.conveyor_velocity,player.friction * delta)
+		if player.player_direction == 1:
+			if !player.cant_move_right:
+				player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed + player.conveyor_velocity,player.friction * delta)
+			else:
+				state_machine.transition_to("Idle")
+		else:
+			player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed + player.conveyor_velocity,player.friction * delta)
 	else:
 		state_machine.transition_to("Idle")
 	

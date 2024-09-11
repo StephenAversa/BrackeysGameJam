@@ -22,7 +22,9 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Idle")
 	
 	if (!is_zero_approx(player.get_input_direction())):
-		player.velocity.x = lerp(player.velocity.x, player.get_input_direction()  * player.move_speed, player.air_friction * delta)
+		if player.player_direction == 1:
+			if !player.cant_move_right:
+				player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed,player.air_friction * delta)
 	else:
 		player.velocity.x = lerp(player.velocity.x, float(0), player.air_friction * delta)
 	
