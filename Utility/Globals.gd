@@ -6,4 +6,4 @@ var gear_count_for_body = 1
 var gear_count_for_legs = 2
 var gear_count_for_arms = 3
 
-var conveyor_speed = 100
+var conveyor_speed = -5000

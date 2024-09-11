@@ -10,7 +10,7 @@
 
 [node name="Box" parent="." instance=ExtResource("1_wu8ig")]
 position = Vector2(582, 487)
-scale = Vector2(100, 2)
+scale = Vector2(69.76, 2)
 
 [node name="Player" parent="." instance=ExtResource("2_jvkxt")]
 position = Vector2(270, 381)
@@ -41,5 +41,10 @@ position = Vector2(551, 503)
 scale = Vector2(54.9736, -4.09994)
 
 [node name="Box2" parent="." instance=ExtResource("5_dm53p")]
-position = Vector2(82, 400)
-scale = Vector2(2, 2)
+position = Vector2(476, 280)
+
+[node name="Box3" parent="." instance=ExtResource("5_dm53p")]
+position = Vector2(501, 338)
+
+[node name="Box4" parent="." instance=ExtResource("5_dm53p")]
+position = Vector2(493, 215)
