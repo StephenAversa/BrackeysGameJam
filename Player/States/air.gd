@@ -15,16 +15,18 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	#handle_jump_animation()
-	player.velocity.y += player.gravity * delta
 	
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")
+	else:
+		player.velocity.y += player.gravity * delta
 	
 	if (!is_zero_approx(player.get_input_direction())):
 		if player.player_direction == 1:
 			if !player.cant_move_right:
 				player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed,player.air_friction * delta)
+		else:
+			player.velocity.x = lerp(player.velocity.x,player.get_input_direction() * player.move_speed,player.air_friction * delta)
 	else:
 		player.velocity.x = lerp(player.velocity.x, float(0), player.air_friction * delta)
 	
