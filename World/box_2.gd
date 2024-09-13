@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func combine_with(other_box) -> void:
-	var relative_position = global_position - Vector2(other_box.global_position.x,other_box.global_position.y-6)
+	var relative_position = global_position - Vector2(other_box.global_position.x,other_box.global_position.y-5)
 	set_physics_process(false)
 	get_parent().remove_child(self)
 	other_box.add_child(self)

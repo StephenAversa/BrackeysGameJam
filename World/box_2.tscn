@@ -16,7 +16,8 @@ floor_constant_speed = true
 script = ExtResource("1_1e0lr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+position = Vector2(-4.76837e-07, 4.76837e-07)
+scale = Vector2(2.125, 2.125)
 texture = ExtResource("1_mgkfp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,7 +25,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_mdoj3")
 
 [node name="BoxCheck" type="RayCast2D" parent="."]
-target_position = Vector2(-11, 18)
+target_position = Vector2(-2, 18)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false

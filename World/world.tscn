@@ -4,28 +4,41 @@
 [ext_resource type="PackedScene" uid="uid://cxqb66omy3qm3" path="res://Player/player.tscn" id="2_jvkxt"]
 [ext_resource type="PackedScene" uid="uid://bgjc5m3n5hob0" path="res://World/gear.tscn" id="3_70bwe"]
 [ext_resource type="PackedScene" uid="uid://dgq5kirpqc3g0" path="res://World/conveyor_area.tscn" id="4_2qinn"]
-[ext_resource type="PackedScene" uid="uid://dnejojvbb4jwy" path="res://World/box_2.tscn" id="5_dm53p"]
+[ext_resource type="PackedScene" uid="uid://bxcme67a52g7n" path="res://World/block_spawner.tscn" id="7_jrcgs"]
 
 [node name="World" type="Node"]
 
 [node name="Box" parent="." instance=ExtResource("1_wu8ig")]
-position = Vector2(582, 487)
-scale = Vector2(69.76, 2)
+position = Vector2(914, 528)
+scale = Vector2(93.48, 2)
+collision_layer = 7
+collision_mask = 7
+
+[node name="Box5" parent="." instance=ExtResource("1_wu8ig")]
+position = Vector2(-210, 528)
+scale = Vector2(32.92, 2)
+collision_layer = 7
+collision_mask = 7
+
+[node name="Box6" parent="." instance=ExtResource("1_wu8ig")]
+position = Vector2(111, 528)
+scale = Vector2(7.52, 2)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Player" parent="." instance=ExtResource("2_jvkxt")]
 position = Vector2(270, 381)
-scale = Vector2(4, 4)
 
 [node name="Gear" parent="." instance=ExtResource("3_70bwe")]
-position = Vector2(860, 446)
+position = Vector2(945, 282)
 scale = Vector2(2, 2)
 
 [node name="Gear2" parent="." instance=ExtResource("3_70bwe")]
-position = Vector2(673, 445)
+position = Vector2(932, 420)
 scale = Vector2(2, 2)
 
 [node name="Gear3" parent="." instance=ExtResource("3_70bwe")]
-position = Vector2(765, 443)
+position = Vector2(947, 340)
 scale = Vector2(2, 2)
 
 [node name="Gear4" parent="." instance=ExtResource("3_70bwe")]
@@ -33,18 +46,12 @@ position = Vector2(954, 447)
 scale = Vector2(2, 2)
 
 [node name="Gear5" parent="." instance=ExtResource("3_70bwe")]
-position = Vector2(592, 441)
+position = Vector2(951, 385)
 scale = Vector2(2, 2)
 
 [node name="ConveyorArea" parent="." instance=ExtResource("4_2qinn")]
-position = Vector2(551, 503)
-scale = Vector2(54.9736, -4.09994)
+position = Vector2(596, 552)
+scale = Vector2(110.854, -4.09994)
 
-[node name="Box2" parent="." instance=ExtResource("5_dm53p")]
-position = Vector2(476, 280)
-
-[node name="Box3" parent="." instance=ExtResource("5_dm53p")]
-position = Vector2(501, 338)
-
-[node name="Box4" parent="." instance=ExtResource("5_dm53p")]
-position = Vector2(493, 215)
+[node name="BlockSpawner" parent="." instance=ExtResource("7_jrcgs")]
+position = Vector2(1216, 512)

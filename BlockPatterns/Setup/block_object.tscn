@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnxkx3i02kx04"]
+
+[ext_resource type="Script" path="res://BlockPatterns/Setup/block_object.gd" id="1_n8tu8"]
+
+[node name="BlockObject" type="Node2D"]
+script = ExtResource("1_n8tu8")
