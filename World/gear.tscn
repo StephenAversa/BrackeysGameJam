@@ -10,6 +10,7 @@ radius = 6.08276
 radius = 7.0
 
 [node name="Gear" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_qy866")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

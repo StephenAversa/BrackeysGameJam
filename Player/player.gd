@@ -126,5 +126,6 @@ func build_command(img: String) -> void:
 func _on_player_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("gear"):
 		Globals.gear_count += 1
+		SignalManager.emit_signal("update_gear_count")
 		area.get_parent().queue_free()
 		check_upgrade()

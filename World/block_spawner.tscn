@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxcme67a52g7n"]
+[gd_scene load_steps=2 format=3 uid="uid://0p14uhonuoe4"]
 
 [ext_resource type="Script" path="res://BlockPatterns/Setup/block_spawner.gd" id="1_cl5ds"]
 
