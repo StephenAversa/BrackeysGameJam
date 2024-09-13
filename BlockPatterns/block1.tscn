@@ -34,4 +34,7 @@ tile_map_data = PackedByteArray("AAAAAAgAAAACAAAAAAABAAcAAAACAAAAAAABAAgAAAACAAA
 tile_set = SubResource("TileSet_urgne")
 
 [node name="Gear" parent="." instance=ExtResource("3_6shn5")]
-position = Vector2(446, 62)
+position = Vector2(436, 72)
+
+[node name="Gear2" parent="." instance=ExtResource("3_6shn5")]
+position = Vector2(224, 234)
