@@ -14,6 +14,8 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	if !player.is_on_floor():
 		state_machine.transition_to("Air", {coyote = true})
+	elif player.has_double_jump:
+		player.can_double_jump = true
 
 	if (!is_zero_approx(player.get_input_direction())):
 		if player.player_direction == 1:

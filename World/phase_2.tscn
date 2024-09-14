@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgo83irk0mdjm"]
+
+[ext_resource type="PackedScene" uid="uid://ceeuumk8hi7vc" path="res://World/crusher.tscn" id="1_l8ey0"]
+[ext_resource type="PackedScene" uid="uid://h7ov6o4seq58" path="res://World/platform_1.tscn" id="2_k2pcr"]
+[ext_resource type="PackedScene" uid="uid://cxqb66omy3qm3" path="res://Player/player.tscn" id="3_rkumn"]
+[ext_resource type="PackedScene" uid="uid://ce2s36tc5boh5" path="res://World/camera.tscn" id="4_j8rvv"]
+[ext_resource type="PackedScene" uid="uid://dji6wagu6hhar" path="res://World/destroy_area.tscn" id="5_5qchs"]
+[ext_resource type="PackedScene" uid="uid://bcy8xmfoxmbss" path="res://World/phase_2_spawner.tscn" id="5_ynwl6"]
+[ext_resource type="PackedScene" uid="uid://cel7kcy3ig8iv" path="res://UI/ui.tscn" id="7_qvwhr"]
+
+[node name="Phase2" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("3_rkumn")]
+position = Vector2(576, 344)
+
+[node name="Platform1" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(576, 400)
+
+[node name="Platform7" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(576, 0)
+
+[node name="Platform8" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(576, 80)
+
+[node name="Platform2" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(352, 296)
+
+[node name="Platform3" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(352, 128)
+
+[node name="Platform4" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(576, 208)
+
+[node name="Platform5" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(800, 296)
+
+[node name="Platform6" parent="." instance=ExtResource("2_k2pcr")]
+position = Vector2(800, 128)
+
+[node name="Phase2Spawner" parent="." instance=ExtResource("5_ynwl6")]
+
+[node name="Camera" parent="." instance=ExtResource("4_j8rvv")]
+position = Vector2(576, 328)
+
+[node name="Crusher" parent="Camera" instance=ExtResource("1_l8ey0")]
+z_index = 5
+position = Vector2(-576, 192)
+
+[node name="DestroyArea" parent="Camera" instance=ExtResource("5_5qchs")]
+position = Vector2(-576, 376)
+
+[node name="CanvasGroup" type="CanvasLayer" parent="Camera"]
+
+[node name="UI" parent="Camera/CanvasGroup" instance=ExtResource("7_qvwhr")]
+
+[node name="Gearcount" parent="Camera/CanvasGroup/UI/HBoxContainer/VBoxContainer" index="0"]
+visible = false
+
+[editable path="Camera/CanvasGroup/UI"]

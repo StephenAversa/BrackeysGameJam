@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cel7kcy3ig8iv"]
+[gd_scene load_steps=6 format=3 uid="uid://cel7kcy3ig8iv"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_83nxg"]
 [ext_resource type="FontFile" uid="uid://b2vbi5par6u7j" path="res://Art/Fonts/I-pixel-u.ttf" id="1_ptne2"]
+[ext_resource type="Texture2D" uid="uid://cltby7moplhu3" path="res://Art/UI/Heart.png" id="3_y6w6a"]
+[ext_resource type="Texture2D" uid="uid://u30rixfe7pja" path="res://Art/UI/LifeEnd.png" id="4_oyyar"]
+[ext_resource type="Texture2D" uid="uid://brjxihn01dq5f" path="res://Art/UI/LifeTick.png" id="5_xqul2"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,10 +15,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_83nxg")
 
-[node name="Gearcount" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 1144.0
+offset_bottom = 88.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Gearcount" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ptne2")
 theme_override_font_sizes/font_size = 32
 text = "GEARS: 0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_y6w6a")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_oyyar")
+
+[node name="TickBox" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Tick" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer/TickBox"]
+layout_mode = 2
+texture = ExtResource("5_xqul2")
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_oyyar")
+flip_h = true

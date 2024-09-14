@@ -15,6 +15,9 @@ func physics_update(delta: float) -> void:
 	elif !is_zero_approx(player.get_input_direction()):
 		state_machine.transition_to("Run")
 	
+	if player.has_double_jump:
+		player.can_double_jump = true
+	
 	if player.canJumpBuffer:
 		player.canJumpBuffer = false
 		state_machine.transition_to("Air", {jump = true})

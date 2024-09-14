@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk0hitfnjaiqx"]
+
+[ext_resource type="Script" path="res://World/platform_2.gd" id="1_2oym7"]
+[ext_resource type="Texture2D" uid="uid://dqm7ag1dd8c1f" path="res://Art/PlatformHalf.png" id="1_wtni7"]
+[ext_resource type="PackedScene" uid="uid://cl5d3kaudw6pl" path="res://World/spike.tscn" id="3_b1r86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1kan"]
+size = Vector2(128, 16)
+
+[node name="Platform1" type="StaticBody2D" groups=["destroy", "platform"]]
+script = ExtResource("1_2oym7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-32, 0)
+texture = ExtResource("1_wtni7")
+
+[node name="Spike" parent="Sprite2D" instance=ExtResource("3_b1r86")]
+position = Vector2(0, -6)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = ExtResource("1_wtni7")
+flip_h = true
+
+[node name="Spike" parent="Sprite2D2" instance=ExtResource("3_b1r86")]
+position = Vector2(-2, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["destroy", "platform"]]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_e1kan")
+one_way_collision = true
