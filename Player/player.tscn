@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cxqb66omy3qm3"]
+[gd_scene load_steps=17 format=3 uid="uid://cxqb66omy3qm3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_jabki"]
 [ext_resource type="Script" path="res://Utility/StateMachine.gd" id="2_efdqs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Player/States/idle.gd" id="4_a617p"]
 [ext_resource type="Script" path="res://Player/States/run.gd" id="5_nwoa1"]
 [ext_resource type="Script" path="res://Player/States/air.gd" id="6_pgpvm"]
+[ext_resource type="Texture2D" uid="uid://cujjv7cg81u53" path="res://Art/Dust.png" id="7_pqja6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgeuo"]
 size = Vector2(24, 26)
@@ -100,6 +101,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bq2wa"]
 size = Vector2(26, 28)
 
+[sub_resource type="Curve" id="Curve_0btdd"]
+_data = [Vector2(0, 0.736264), 0.0, 0.0, 0, 0, Vector2(0.797753, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody2D" groups=["convey"]]
 collision_layer = 7
 collision_mask = 7
@@ -154,5 +159,23 @@ collide_with_bodies = false
 target_position = Vector2(16, 0)
 collision_mask = 2
 
+[node name="Jetpack" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-13, 11)
+emitting = false
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.79
+texture = ExtResource("7_pqja6")
+direction = Vector2(0, 1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 150.0
+scale_amount_curve = SubResource("Curve_0btdd")
+color = Color(0.415686, 1, 1, 1)
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]

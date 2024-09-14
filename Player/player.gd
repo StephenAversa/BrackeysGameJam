@@ -27,8 +27,11 @@ var player_direction = 1
 
 #JumpBuffer Timer
 @export var canJumpBuffer = false
-@export var jumpBufferTime = .05
+@export var jumpBufferTime = .1
 @onready var jump_buffer_timer = $JumpBufferTimer
+
+var has_double_jump = false
+var can_double_jump = false
 
 #CoyoteTimer
 @export var canCoyote = false
@@ -42,10 +45,12 @@ var conveyor_velocity = 0
 @onready var conveyor_check: RayCast2D = $ConveyorCheck
 @onready var move_right_check: RayCast2D = $MoveRightCheck
 var cant_move_right = false
+@onready var jetpack: CPUParticles2D = $Jetpack
 
 
 func _ready() -> void:
 	velocity = Vector2.ZERO
+	build_robot(3)
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -90,6 +95,7 @@ func build_robot(step: int) -> void:
 	if step == 2:
 		build_command("res://Art/Robot/HeadBodyLegs.png")
 	if step == 3:
+		has_double_jump = true
 		build_command("res://Art/Robot/HeadBodyLegsBackPack.png")
 
 func get_new_collision(texture: Texture, new_width: int, area: CollisionShape2D) -> RectangleShape2D:
@@ -127,5 +133,6 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("gear"):
 		Globals.gear_count += 1
 		SignalManager.emit_signal("update_gear_count")
+		SignalManager.emit_signal("add_health")
 		area.get_parent().queue_free()
 		check_upgrade()

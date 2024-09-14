@@ -10,6 +10,10 @@ func handle_input(event: InputEvent) -> void:
 		if !player.canJumpBuffer:
 			player.canJumpBuffer = true
 			player.jump_buffer_timer.start(.1)
+		if player.can_double_jump:
+			player.velocity.y = -player.jump_speed/1.25
+			player.jetpack.emitting = true
+			player.can_double_jump = false
 
 func update(_delta: float) -> void:
 	pass
