@@ -161,7 +161,7 @@ collision_mask = 2
 
 [node name="Jetpack" type="CPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(-13, 11)
+position = Vector2(0, 10)
 emitting = false
 lifetime = 0.75
 one_shot = true
