@@ -110,13 +110,28 @@ func get_new_collision(texture: Texture, new_width: int, area: CollisionShape2D)
 func check_upgrade():
 	if build_step == 0 && Globals.gear_count >= Globals.gear_count_for_body:
 		build_step += 1
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
 		build_robot(build_step)
 	if build_step == 1 && Globals.gear_count >= Globals.gear_count_for_legs:
 		build_step += 1
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
 		build_robot(build_step)
 	if build_step == 2 && Globals.gear_count >= Globals.gear_count_for_arms:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
 		build_step += 1
 		build_robot(build_step)
+	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health1:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
+	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health2:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
+	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health3:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
 
 func build_command(img: String) -> void:
 	sprite_2d.texture = load(img)
@@ -133,6 +148,5 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("gear"):
 		Globals.gear_count += 1
 		SignalManager.emit_signal("update_gear_count")
-		SignalManager.emit_signal("add_health")
 		area.get_parent().queue_free()
 		check_upgrade()
