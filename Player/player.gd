@@ -130,15 +130,15 @@ func check_upgrade():
 		build_step += 1
 		build_robot(build_step)
 		level_up.level_up("Double Jump")
-	if Globals.gear_count >= Globals.gear_count_health1:
-		Globals.player_health += 1
-		SignalManager.emit_signal("add_health")
-		level_up.level_up("Health Up")
-	if Globals.gear_count >= Globals.gear_count_health2:
-		Globals.player_health += 1
-		SignalManager.emit_signal("add_health")
-		level_up.level_up("Health Up")
 	if Globals.gear_count >= Globals.gear_count_health3:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
+		level_up.level_up("Health Up")
+	elif Globals.gear_count >= Globals.gear_count_health2:
+		Globals.player_health += 1
+		SignalManager.emit_signal("add_health")
+		level_up.level_up("Health Up")
+	elif Globals.gear_count >= Globals.gear_count_health1:
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
 		level_up.level_up("Health Up")

@@ -3,6 +3,7 @@ extends Control
 @onready var gearcount: Label = $HBoxContainer/VBoxContainer/Gearcount
 @onready var tick: TextureRect = $HBoxContainer/VBoxContainer/HBoxContainer/TickBox/Tick
 @onready var tick_box: HBoxContainer = $HBoxContainer/VBoxContainer/HBoxContainer/TickBox
+var temp_tick: TextureRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +29,8 @@ func remove_health():
 		SignalManager.emit_signal("kill_player")
 
 func set_health(num: int):
-	for i in num-1:
+	for child in tick_box.get_children():
+		child.queue_free()
+	for i in num:
 		var tick_instance = tick.duplicate(true)
 		tick_box.add_child(tick_instance)

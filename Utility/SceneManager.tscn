@@ -10,7 +10,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,23 +50,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dwkwa")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)
 z_index = 10
 z_as_relative = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -64.0
-offset_top = -832.0
+offset_top = -64.0
 offset_right = 64.0
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("CanvasTexture_f5p0o")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_8fkrx")
 }
