@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://dumtvq0snx5oo"]
+
+[ext_resource type="FontFile" uid="uid://b2vbi5par6u7j" path="res://Art/Fonts/I-pixel-u.ttf" id="1_cokei"]
+[ext_resource type="Script" path="res://World/Hazards/falling_box.gd" id="1_x87g8"]
+
+[sub_resource type="Gradient" id="Gradient_od47d"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.103896, 0.909091, 1)
+colors = PackedColorArray(0.976471, 0.588235, 0.0196078, 1, 1, 1, 1, 0, 0.996078, 0.956863, 0.894118, 0, 0.976471, 0.588235, 0.0196078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbuqn"]
+gradient = SubResource("Gradient_od47d")
+height = 24
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_i10gl"]
+resource_name = "Warn"
+
+[sub_resource type="Animation" id="Animation_h1jnd"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6gq1"]
+_data = {
+"RESET": SubResource("Animation_h1jnd"),
+"Warn": SubResource("Animation_i10gl")
+}
+
+[node name="FallingBox" type="Node2D"]
+script = ExtResource("1_x87g8")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 80.0
+offset_bottom = 24.0
+texture = SubResource("GradientTexture2D_rbuqn")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.976471, 0.588235, 0.0196078, 1)
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 80.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("1_cokei")
+theme_override_font_sizes/font_size = 24
+text = "!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p6gq1")
+}
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

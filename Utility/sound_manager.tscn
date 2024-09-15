@@ -1,0 +1,46 @@
+[gd_scene load_steps=12 format=3 uid="uid://5la5rssntepe"]
+
+[ext_resource type="Script" path="res://Utility/sound_manager.gd" id="1_knc0n"]
+[ext_resource type="AudioStream" uid="uid://cglckskmxphlo" path="res://Sounds/crusher_smash.mp3" id="2_2i27a"]
+[ext_resource type="AudioStream" uid="uid://cnvilb1kj51od" path="res://Sounds/defectivecalm.mp3" id="3_co0dl"]
+[ext_resource type="AudioStream" uid="uid://0a0f5bmo7brf" path="res://Sounds/defectivestorm.mp3" id="4_n2432"]
+[ext_resource type="AudioStream" uid="uid://b018j66nkh12i" path="res://Sounds/explosion.mp3" id="5_kckw0"]
+[ext_resource type="AudioStream" uid="uid://bq6hrqh1m82ff" path="res://Sounds/get_gear.mp3" id="6_bkx7h"]
+[ext_resource type="AudioStream" uid="uid://cpq6oqytsomr0" path="res://Sounds/jet_pack.mp3" id="7_vn4q7"]
+[ext_resource type="AudioStream" uid="uid://b1mus76bdoccq" path="res://Sounds/jump.mp3" id="8_8c7td"]
+[ext_resource type="AudioStream" uid="uid://by7mfjypusqyf" path="res://Sounds/land.mp3" id="9_xs3ja"]
+[ext_resource type="AudioStream" uid="uid://db1fwlvevd7m2" path="res://Sounds/take_damage.mp3" id="10_e5ciw"]
+[ext_resource type="AudioStream" uid="uid://cljreljs6o1tr" path="res://Sounds/rejected.wav" id="11_lru0r"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_knc0n")
+
+[node name="CrusherSmash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2i27a")
+
+[node name="AggressiveSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n2432")
+
+[node name="CalmSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_co0dl")
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kckw0")
+
+[node name="GetGear" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bkx7h")
+
+[node name="JetPack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vn4q7")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_8c7td")
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xs3ja")
+
+[node name="TakeDamage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_e5ciw")
+
+[node name="Rejected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_lru0r")

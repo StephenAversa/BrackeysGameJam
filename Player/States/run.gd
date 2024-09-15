@@ -41,7 +41,7 @@ func enter(msg := {}) -> void:
 			animationPlayer.play("HeadRunRight")
 		else:
 			animationPlayer.play("HeadRunLeft")
-	elif player.build_step == 1:
+	else:
 			animationPlayer.play("HeadBodyRun")
 
 func exit() -> void:

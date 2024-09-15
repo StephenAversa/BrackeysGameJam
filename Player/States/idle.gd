@@ -29,6 +29,8 @@ func enter(msg := {}) -> void:
 	player.canCoyote = true
 	if player.build_step == 0:
 		animationPlayer.play("HeadIdle")
+	else:
+		animationPlayer.play("HeadBodyIdle")
 
 func exit() -> void:
 	pass

@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgo83irk0mdjm"]
+[gd_scene load_steps=9 format=3 uid="uid://cgo83irk0mdjm"]
 
+[ext_resource type="Script" path="res://World/phase_2.gd" id="1_4bil6"]
 [ext_resource type="PackedScene" uid="uid://ceeuumk8hi7vc" path="res://World/crusher.tscn" id="1_l8ey0"]
 [ext_resource type="PackedScene" uid="uid://h7ov6o4seq58" path="res://World/platform_1.tscn" id="2_k2pcr"]
 [ext_resource type="PackedScene" uid="uid://cxqb66omy3qm3" path="res://Player/player.tscn" id="3_rkumn"]
@@ -9,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cel7kcy3ig8iv" path="res://UI/ui.tscn" id="7_qvwhr"]
 
 [node name="Phase2" type="Node"]
+script = ExtResource("1_4bil6")
 
 [node name="Player" parent="." instance=ExtResource("3_rkumn")]
-position = Vector2(576, 344)
+position = Vector2(576, 160)
 
 [node name="Platform1" parent="." instance=ExtResource("2_k2pcr")]
 position = Vector2(576, 400)
@@ -47,13 +49,26 @@ z_index = 5
 position = Vector2(-576, 192)
 
 [node name="DestroyArea" parent="Camera" instance=ExtResource("5_5qchs")]
-position = Vector2(-576, 376)
+position = Vector2(-576, 696)
 
 [node name="CanvasGroup" type="CanvasLayer" parent="Camera"]
+
+[node name="Alarm" type="ColorRect" parent="Camera/CanvasGroup"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
 
 [node name="UI" parent="Camera/CanvasGroup" instance=ExtResource("7_qvwhr")]
 
 [node name="Gearcount" parent="Camera/CanvasGroup/UI/HBoxContainer/VBoxContainer" index="0"]
 visible = false
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 
 [editable path="Camera/CanvasGroup/UI"]

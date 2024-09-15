@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0kahvhlpf11w"]
+
+[ext_resource type="Texture2D" uid="uid://cfcc58robmjbp" path="res://Art/BigDust.png" id="1_7olyp"]
+[ext_resource type="Script" path="res://Utility/explosion.gd" id="1_egn3l"]
+[ext_resource type="Texture2D" uid="uid://cujjv7cg81u53" path="res://Art/Dust.png" id="2_fgfnn"]
+
+[sub_resource type="Curve" id="Curve_xflbv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.265537, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_jyjv8"]
+offsets = PackedFloat32Array(0, 0.174497, 0.362416, 0.744966, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.976471, 0.588235, 0.0196078, 1, 0.473976, 0.473976, 0.473976, 1, 0.47, 0.47, 0.47, 0)
+
+[sub_resource type="Gradient" id="Gradient_yk7xf"]
+offsets = PackedFloat32Array(0, 0.322148)
+colors = PackedColorArray(1, 1, 1, 1, 0.176471, 0.172549, 0.168627, 1)
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_egn3l")
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 36
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("1_7olyp")
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 140.0
+initial_velocity_max = 150.0
+damping_min = 80.0
+damping_max = 90.0
+scale_amount_min = 1.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_xflbv")
+color_ramp = SubResource("Gradient_jyjv8")
+
+[node name="Debris" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 1.25
+one_shot = true
+explosiveness = 0.9
+texture = ExtResource("2_fgfnn")
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+color_ramp = SubResource("Gradient_yk7xf")

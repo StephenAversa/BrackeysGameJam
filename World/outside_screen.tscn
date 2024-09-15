@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bagcibm2xvkfb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egcm1"]
+size = Vector2(20, 650)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_654ix"]
+size = Vector2(1344, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eylgy"]
+size = Vector2(20, 645)
+
+[node name="OutsideScreen" type="Area2D" groups=["outside"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-28, 324)
+shape = SubResource("RectangleShape2D_egcm1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(580, 676)
+shape = SubResource("RectangleShape2D_654ix")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(1220, 321.5)
+shape = SubResource("RectangleShape2D_eylgy")

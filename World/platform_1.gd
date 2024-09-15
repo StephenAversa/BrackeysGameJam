@@ -19,9 +19,9 @@ var rotation_angle = randi_range(1,10)
 func _ready() -> void:
 	smash_dis = randi_range(100,150)
 	upward_dist = randi_range(50,75)
-	if Globals.roll(.9):
+	if Globals.roll(.8):
 		spike1.queue_free()
-	if Globals.roll(.9):
+	if Globals.roll(.8):
 		spike2.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

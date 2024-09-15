@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://p82jcnxb5wlj"]
+
+[ext_resource type="Script" path="res://World/Hazards/box_hazard.gd" id="1_1wjfo"]
+[ext_resource type="Texture2D" uid="uid://cujjv7cg81u53" path="res://Art/Dust.png" id="2_6naym"]
+[ext_resource type="Texture2D" uid="uid://crvno5fp266fm" path="res://Art/Box.png" id="2_il7ew"]
+
+[sub_resource type="Curve" id="Curve_vbehv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.757062, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5dbv"]
+size = Vector2(32, 32)
+
+[node name="BoxHazard" type="Node2D"]
+script = ExtResource("1_1wjfo")
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+amount = 32
+texture = ExtResource("2_6naym")
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+direction = Vector2(0, 0)
+spread = 150.0
+gravity = Vector2(0, -450)
+scale_amount_curve = SubResource("Curve_vbehv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_il7ew")
+
+[node name="Area2D" type="Area2D" parent="." groups=["hurt"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_x5dbv")
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

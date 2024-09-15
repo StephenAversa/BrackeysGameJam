@@ -9,4 +9,11 @@ script = ExtResource("1_cldtu")
 one_shot = true
 autostart = true
 
+[node name="BoxTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="BoxTimer" to="." method="_on_box_timer_timeout"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]

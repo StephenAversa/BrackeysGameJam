@@ -1,0 +1,165 @@
+[gd_scene load_steps=8 format=3 uid="uid://snco3u14sd8d"]
+
+[ext_resource type="Texture2D" uid="uid://cujjv7cg81u53" path="res://Art/Dust.png" id="1_k3kjw"]
+[ext_resource type="Script" path="res://Player/level_up.gd" id="1_owhha"]
+[ext_resource type="FontFile" uid="uid://b2vbi5par6u7j" path="res://Art/Fonts/I-pixel-u.ttf" id="2_sac0x"]
+
+[sub_resource type="Curve" id="Curve_hd6do"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.623596, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_hbgpd"]
+resource_name = "LevelUp"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-40, -24), Vector2(-40, -138)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.976471, 0.588235, 0.0196078, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OrangeBoom:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_o3ejm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, -24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.976471, 0.588235, 0.0196078, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("OrangeBoom:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3n1v"]
+_data = {
+"LevelUp": SubResource("Animation_hbgpd"),
+"RESET": SubResource("Animation_o3ejm")
+}
+
+[node name="LevelUp" type="Node2D"]
+z_index = 5
+z_as_relative = false
+script = ExtResource("1_owhha")
+
+[node name="OrangeBoom" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.9
+randomness = 0.8
+texture = ExtResource("1_k3kjw")
+spread = 180.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_curve = SubResource("Curve_hd6do")
+color = Color(0.976471, 0.54902, 0.0196078, 1)
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(0.976471, 0.588235, 0.0196078, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.95
+anchor_bottom = 0.98
+offset_left = 4.0
+offset_top = 2.0
+offset_bottom = -0.0200005
+theme_override_fonts/font = ExtResource("2_sac0x")
+text = "Speed Up
+Jump Up"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i3n1v")
+}

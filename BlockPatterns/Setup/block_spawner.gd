@@ -1,5 +1,6 @@
 extends Node2D
 @onready var spawn_timer: Timer = $SpawnTimer
+var can_spawn = true
 
 var blocks = []
 
@@ -7,9 +8,10 @@ func _ready() -> void:
 	blocks = get_block_scenes()
 	
 func _on_spawn_timer_timeout() -> void:
-	var next_block = get_random_element()
-	create_block(next_block)
-	spawn_timer.start(7)
+	if can_spawn:
+		var next_block = get_random_element()
+		create_block(next_block)
+		spawn_timer.start(7)
 
 func create_block(block_scene):
 	var block_scene_instance = block_scene.instantiate()
