@@ -12,4 +12,6 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_up() -> void:
+	Globals.gear_count = 0
+	Globals.player_health = 1
 	SceneManager.change_scene("res://World/world.tscn")

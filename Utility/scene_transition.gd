@@ -1,5 +1,5 @@
 extends Control
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $CanvasLayer/AnimationPlayer
 
 
 func change_scene(scene : String):

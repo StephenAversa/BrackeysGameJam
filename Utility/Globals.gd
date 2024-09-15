@@ -12,7 +12,7 @@ var gear_count_health3 = 12
 var conveyor_speed = -100
 var up_the_dif_time = 10
 
-var player_health = 1
+var player_health = 5
 
 
 func roll(chance: float):

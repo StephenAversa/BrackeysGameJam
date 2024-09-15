@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ckfh3131asyqg"]
+[gd_scene load_steps=10 format=3 uid="uid://ckfh3131asyqg"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_kykok"]
 [ext_resource type="PackedScene" uid="uid://cxqb66omy3qm3" path="res://Player/player.tscn" id="2_jvkxt"]
 [ext_resource type="PackedScene" uid="uid://dgq5kirpqc3g0" path="res://World/conveyor_area.tscn" id="4_2qinn"]
 [ext_resource type="PackedScene" uid="uid://kuoimm5w2wp1" path="res://World/conveyor.tscn" id="5_prqfu"]
 [ext_resource type="PackedScene" uid="uid://cel7kcy3ig8iv" path="res://UI/ui.tscn" id="5_ys226"]
+[ext_resource type="PackedScene" uid="uid://d7plrui5ybc3" path="res://UI/progress.tscn" id="6_7u8yy"]
 [ext_resource type="PackedScene" uid="uid://bagcibm2xvkfb" path="res://World/outside_screen.tscn" id="6_vfbji"]
 [ext_resource type="PackedScene" uid="uid://0p14uhonuoe4" path="res://World/block_spawner.tscn" id="7_jrcgs"]
 [ext_resource type="PackedScene" uid="uid://dltay6d2p8t8r" path="res://UI/info.tscn" id="7_phbj3"]
@@ -13,7 +14,7 @@
 script = ExtResource("1_kykok")
 
 [node name="Player" parent="." instance=ExtResource("2_jvkxt")]
-position = Vector2(270, 381)
+position = Vector2(816, 496)
 
 [node name="ConveyorArea" parent="." instance=ExtResource("4_2qinn")]
 position = Vector2(596, 552)
@@ -24,6 +25,13 @@ position = Vector2(1216, 512)
 
 [node name="UI" parent="." instance=ExtResource("5_ys226")]
 offset_left = 5.0
+
+[node name="Progress" parent="UI" instance=ExtResource("6_7u8yy")]
+layout_mode = 1
+offset_left = -578.5
+offset_top = 16.0
+offset_right = 573.5
+offset_bottom = 48.0
 
 [node name="ConveyorTracks" type="Node" parent="."]
 
@@ -81,13 +89,19 @@ position = Vector2(992, 544)
 [node name="Conveyor18" parent="ConveyorTracks" instance=ExtResource("5_prqfu")]
 position = Vector2(1120, 544)
 
+[node name="Conveyor19" parent="ConveyorTracks" instance=ExtResource("5_prqfu")]
+position = Vector2(1552, 544)
+scale = Vector2(12.4, 1)
+
+[node name="Conveyor20" parent="ConveyorTracks" instance=ExtResource("5_prqfu")]
+position = Vector2(-400, 544)
+scale = Vector2(12.4, 1)
+
 [node name="OutsideScreen" parent="." instance=ExtResource("6_vfbji")]
 
 [node name="Info" parent="." instance=ExtResource("7_phbj3")]
 
 [node name="Phase1Timer" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
 autostart = true
 
 [connection signal="timeout" from="Phase1Timer" to="." method="_on_phase_1_timer_timeout"]
