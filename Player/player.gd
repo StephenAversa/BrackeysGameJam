@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var build_step = 0
+const EXPLOSION = preload("res://Utility/explosion.tscn")
 
 @export var head_speed = 200
 @export var headbody_speed = 250
@@ -46,12 +47,15 @@ var conveyor_velocity = 0
 @onready var move_right_check: RayCast2D = $MoveRightCheck
 var cant_move_right = false
 @onready var jetpack: CPUParticles2D = $Jetpack
+@onready var level_up: Node2D = $LevelUp
+
+var is_hurt = false
 
 
 func _ready() -> void:
+	SignalManager.connect("kill_player",death)
 	velocity = Vector2.ZERO
-	build_robot(3)
-	pass
+	#pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if conveyor_check.is_colliding():
@@ -113,25 +117,31 @@ func check_upgrade():
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
 		build_robot(build_step)
+		level_up.level_up("Speed Up\nJump Up")
 	if build_step == 1 && Globals.gear_count >= Globals.gear_count_for_legs:
 		build_step += 1
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
 		build_robot(build_step)
+		level_up.level_up("Speed Up\nJump Up")
 	if build_step == 2 && Globals.gear_count >= Globals.gear_count_for_arms:
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
 		build_step += 1
 		build_robot(build_step)
-	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health1:
+		level_up.level_up("Double Jump")
+	if Globals.gear_count >= Globals.gear_count_health1:
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
-	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health2:
+		level_up.level_up("Health Up")
+	if Globals.gear_count >= Globals.gear_count_health2:
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
-	if build_step == 2 && Globals.gear_count >= Globals.gear_count_health3:
+		level_up.level_up("Health Up")
+	if Globals.gear_count >= Globals.gear_count_health3:
 		Globals.player_health += 1
 		SignalManager.emit_signal("add_health")
+		level_up.level_up("Health Up")
 
 func build_command(img: String) -> void:
 	sprite_2d.texture = load(img)
@@ -149,4 +159,37 @@ func _on_player_area_area_entered(area: Area2D) -> void:
 		Globals.gear_count += 1
 		SignalManager.emit_signal("update_gear_count")
 		area.get_parent().queue_free()
+		SoundManager.get_gear.play()
 		check_upgrade()
+	if area.is_in_group("hurt"):
+		if !is_hurt:
+			is_hurt = true
+			take_damage()
+			SignalManager.emit_signal("remove_health")
+	if area.is_in_group("outside"):
+		outside()
+
+func take_damage():
+	SoundManager.take_damage.play()
+	var tween = create_tween()
+	for i in 4:
+		tween.tween_property(sprite_2d,"modulate",Color(1, 1, 1, 1),.25).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(sprite_2d,"modulate",Color(1, 1, 1, .2),.25).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(sprite_2d,"modulate",Color(1, 1, 1, 1),.25).set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
+	is_hurt = false
+
+func outside():
+	if Globals.gear_count > 0:
+		Globals.gear_count -= 1
+		SignalManager.emit_signal("update_gear_count")
+	global_position = Vector2(576, -64)
+
+func death():
+	var explosion_instance = EXPLOSION.instantiate()
+	explosion_instance.global_position = global_position
+	get_parent().add_child(explosion_instance)
+	SoundManager.explosion.play()
+	SignalManager.emit_signal("game_over")
+	queue_free()
+		

@@ -11,6 +11,7 @@ func handle_input(event: InputEvent) -> void:
 			player.canJumpBuffer = true
 			player.jump_buffer_timer.start(.1)
 		if player.can_double_jump:
+			SoundManager.jet_pack.play()
 			player.velocity.y = -player.jump_speed/1.25
 			player.jetpack.emitting = true
 			player.can_double_jump = false
@@ -40,9 +41,11 @@ func enter(msg := {}) -> void:
 	#Add animations for jumps in section below
 	#handle_jump_animation()
 	if (msg.has("jump")):
+		SoundManager.jump.play()
 		player.velocity.y = -player.jump_speed
 	if msg.has("coyote"):
 		player.coyote_timer.start()
+	animationPlayer.play("HeadBodyIdle")
 		
 
 func exit() -> void:

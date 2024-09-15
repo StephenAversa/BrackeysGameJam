@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://brv7jqlmhu6j4" path="res://Art/PlatformHalfBig.png" id="1_3vv1b"]
 [ext_resource type="Script" path="res://World/platform_1.gd" id="1_a2cq0"]
-[ext_resource type="PackedScene" uid="uid://cl5d3kaudw6pl" path="res://World/spike.tscn" id="3_038so"]
+[ext_resource type="PackedScene" uid="uid://cl5d3kaudw6pl" path="res://World/Hazards/spike.tscn" id="3_038so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1kan"]
 size = Vector2(192, 16)

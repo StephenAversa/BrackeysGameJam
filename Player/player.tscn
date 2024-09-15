@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxqb66omy3qm3"]
+[gd_scene load_steps=19 format=3 uid="uid://cxqb66omy3qm3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_jabki"]
 [ext_resource type="Script" path="res://Utility/StateMachine.gd" id="2_efdqs"]
@@ -7,23 +7,26 @@
 [ext_resource type="Script" path="res://Player/States/run.gd" id="5_nwoa1"]
 [ext_resource type="Script" path="res://Player/States/air.gd" id="6_pgpvm"]
 [ext_resource type="Texture2D" uid="uid://cujjv7cg81u53" path="res://Art/Dust.png" id="7_pqja6"]
+[ext_resource type="PackedScene" uid="uid://snco3u14sd8d" path="res://Player/level_up.tscn" id="8_b4rep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgeuo"]
 size = Vector2(24, 26)
 
 [sub_resource type="Animation" id="Animation_x5fp4"]
 resource_name = "HeadBodyRun"
+length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1), Vector2(1.1, 0.9)]
 }
 
 [sub_resource type="Animation" id="Animation_r2q0s"]
@@ -88,9 +91,38 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5egb1"]
+resource_name = "HeadBodyIdle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kr4d5"]
 _data = {
+"HeadBodyIdle": SubResource("Animation_5egb1"),
 "HeadBodyRun": SubResource("Animation_x5fp4"),
 "HeadIdle": SubResource("Animation_r2q0s"),
 "HeadRunLeft": SubResource("Animation_qn2uf"),
@@ -150,7 +182,7 @@ playback_default_blend_time = 0.2
 shape = SubResource("RectangleShape2D_bq2wa")
 
 [node name="ConveyorCheck" type="RayCast2D" parent="."]
-target_position = Vector2(0, 237)
+target_position = Vector2(0, 417)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -174,6 +206,8 @@ initial_velocity_min = 120.0
 initial_velocity_max = 150.0
 scale_amount_curve = SubResource("Curve_0btdd")
 color = Color(0.415686, 1, 1, 1)
+
+[node name="LevelUp" parent="." instance=ExtResource("8_b4rep")]
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]

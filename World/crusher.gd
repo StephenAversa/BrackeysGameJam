@@ -27,6 +27,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func shake():
 	SignalManager.emit_signal("screen_shake",.5,10)
+	SoundManager.crusher_smash.play()
 
 
 func _on_crush_area_body_entered(body: Node2D) -> void:

@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://co2j5kvmugip7"]
+
+[ext_resource type="Script" path="res://Menus/start_menu.gd" id="1_4t1id"]
+[ext_resource type="FontFile" uid="uid://b2vbi5par6u7j" path="res://Art/Fonts/I-pixel-u.ttf" id="1_lx44n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45j6n"]
+bg_color = Color(0.999804, 0.783271, 0.577072, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rn74"]
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avah4"]
+bg_color = Color(0.976471, 0.588235, 0.0196078, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4t1id")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Title" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lx44n")
+theme_override_font_sizes/font_size = 48
+text = "Cancelled"
+
+[node name="Spacer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_lx44n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_45j6n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8rn74")
+theme_override_styles/normal = SubResource("StyleBoxFlat_avah4")
+text = "Play"
+
+[node name="Info" type="Button" parent="HBoxContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_lx44n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_45j6n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8rn74")
+theme_override_styles/normal = SubResource("StyleBoxFlat_avah4")
+text = "Info"
+
+[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_lx44n")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_45j6n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8rn74")
+theme_override_styles/normal = SubResource("StyleBoxFlat_avah4")
+text = "Quit"
+
+[connection signal="button_up" from="HBoxContainer/VBoxContainer/Buttons/Play" to="." method="_on_play_button_up"]
