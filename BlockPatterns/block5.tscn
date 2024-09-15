@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=4 uid="uid://b2vvaw1ny703s"]
+
+[ext_resource type="Script" path="res://BlockPatterns/Setup/block_object.gd" id="1_rrloq"]
+[ext_resource type="Texture2D" uid="uid://b3ft53qb5f8ya" path="res://Art/Blocks.png" id="2_hbfvv"]
+[ext_resource type="PackedScene" uid="uid://bgjc5m3n5hob0" path="res://World/gear.tscn" id="3_lmhc5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xnufb"]
+texture = ExtResource("2_hbfvv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_urgne"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_xnufb")
+
+[node name="block5" type="Node2D"]
+script = ExtResource("1_rrloq")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAIAAsAAAAAAAAAAAAIAAwAAAAAAAEAAAAJAAsAAAABAAAAAAAJAAwAAAABAAEAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAEAAAALAAsAAAABAAAAAAALAAwAAAABAAEAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAEAAAANAAsAAAABAAAAAAANAAwAAAABAAEAAAAOAAwAAAACAAAAAAAHAAwAAAACAAAAAAAIAAYAAAAAAAEAAAAJAAYAAAABAAEAAAAKAAYAAAAAAAEAAAALAAYAAAABAAEAAAAMAAYAAAAAAAEAAAANAAYAAAABAAEAAAAIAAUAAAAAAAAAAAAJAAUAAAABAAAAAAAKAAUAAAAAAAAAAAALAAUAAAABAAAAAAAMAAUAAAAAAAAAAAANAAUAAAABAAAAAAAEAAQAAAACAAAAAAAEAAUAAAACAAAAAAAEAAYAAAACAAAAAAAEAAcAAAACAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAEAAAAFAAgAAAABAAAAAAAFAAkAAAABAAEAAAAQAAgAAAAAAAAAAAAQAAkAAAAAAAEAAAARAAgAAAABAAAAAAARAAkAAAABAAEAAAARAAcAAAACAAAAAAARAAQAAAACAAAAAAARAAUAAAACAAAAAAARAAYAAAACAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAEAAAAJAAAAAAABAAAAAAAJAAEAAAABAAEAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAEAAAALAAAAAAABAAAAAAALAAEAAAABAAEAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAEAAAANAAAAAAABAAAAAAANAAEAAAABAAEAAAAFAAMAAAACAAAAAAAQAAMAAAACAAAAAAAGAAkAAAACAAEAAAAPAAkAAAACAAEAAAAHAAYAAAACAAEAAAAOAAYAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_urgne")
+
+[node name="Gear" parent="." instance=ExtResource("3_lmhc5")]
+position = Vector2(347, 328)
+
+[node name="Gear2" parent="." instance=ExtResource("3_lmhc5")]
+position = Vector2(349, 137)

@@ -26,7 +26,7 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_xnufb")
 
-[node name="Block2" type="Node2D"]
+[node name="Block4" type="Node2D"]
 script = ExtResource("1_uytth")
 
 [node name="TileMap" type="TileMapLayer" parent="."]
